@@ -1,8 +1,8 @@
-package com.sundogsoftware.spark
+package com.spark
 
 import org.apache.spark.SparkContext
 
-object Template {
+object CustomerSpending {
   def main(args: Array[String]): Unit = {
     val sc = new SparkContext("local[*]", "RatingsCounter")
 
@@ -13,6 +13,7 @@ object Template {
     //    .set("spark.cores.max", "4")
     //
     //  val sc = new SparkContext(sparkConf)
+    val l1 = List(1,2,3,4)
 
     val customerOrdersRDD = sc.textFile("file:/Users/VikramBabu/open-source/practice/ml-20m/customer-orders.csv")
     customerOrdersRDD.map(line => {
@@ -24,6 +25,5 @@ object Template {
       .sortByKey()
       .collect()
       .foreach(kv => println(s"customer : ${kv._1}, spent : ${kv._2}"))
-//    customerOrdersRDD.foreach(println(_))
   }
 }

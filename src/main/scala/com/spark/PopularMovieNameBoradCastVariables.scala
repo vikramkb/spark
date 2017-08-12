@@ -1,4 +1,4 @@
-package com.sundogsoftware.spark
+package com.spark
 
 import java.nio.charset.CodingErrorAction
 

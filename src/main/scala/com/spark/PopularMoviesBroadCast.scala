@@ -1,4 +1,4 @@
-package com.sundogsoftware.spark
+package com.spark
 
 import org.apache.log4j._
 import org.apache.spark._
@@ -20,16 +20,16 @@ object PopularMoviesBroadCast {
     // Set the log level to only print errors
     Logger.getLogger("org").setLevel(Level.ERROR)
 
-    val sparkConf = new SparkConf()
-      .setMaster("local[*]")
-      .setAppName("PopularMovieBroadCast")
-
-
 //    val sparkConf = new SparkConf()
-//      .setMaster("spark://vkurugun-mac.local:7077")
-//      .setAppName("Test")
-//      .set("spark.executor.memory", "2g")
-//      .set("spark.cores.max", "2")
+//      .setMaster("local[*]")
+//      .setAppName("PopularMovieBroadCast")
+
+
+    val sparkConf = new SparkConf()
+      .setMaster("spark://vkurugun-mac.local:7077")
+      .setAppName("Test")
+      .set("spark.executor.memory", "2g")
+      .set("spark.cores.max", "2")
     val sc = new SparkContext(sparkConf)
     val moviesDict = sc.broadcast(moviesDictionary(sc))
 

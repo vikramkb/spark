@@ -1,8 +1,8 @@
-package com.sundogsoftware.spark
+package com.spark
 
 import org.apache.spark.SparkContext
 
-object CustomerSpending {
+object Template {
   def main(args: Array[String]): Unit = {
     val sc = new SparkContext("local[*]", "RatingsCounter")
 
@@ -24,5 +24,6 @@ object CustomerSpending {
       .sortByKey()
       .collect()
       .foreach(kv => println(s"customer : ${kv._1}, spent : ${kv._2}"))
+//    customerOrdersRDD.foreach(println(_))
   }
 }

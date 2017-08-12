@@ -1,4 +1,4 @@
-package com.sundogsoftware.spark
+package com.spark
 
 import org.apache.log4j._
 import org.apache.spark._
@@ -22,12 +22,13 @@ object Test {
 //      val sc = new SparkContext(sparkConf)
 
 
-      val rdd1 = sc.parallelize(List(("a", 1), ("b",2))).map(x => (x._1, x._2))
-      val rdd2 = sc.parallelize(List(("a", 3), ("b",4))).map(x => (x._1, x._2))
-      rdd1.join(rdd2).collect().foreach(println)
+//      val rdd1 = sc.parallelize(List(("a", 1), ("b",2))).map(x => (x._1, x._2))
+//      val rdd2 = sc.parallelize(List(("a", 3), ("b",4))).map(x => (x._1, x._2))
+//      rdd1.join(rdd2).collect().foreach(println)
 //    sc.parallelize(List(("a",(1,2,3)), ("b",(1,2,3)), ("c",(1,2,3)))).flatMap(t => {
 //      List((t._1, t._2._1),(t._1, t._2._2),(t._1, t._2._3))
 //    }).collect().foreach(println)
     //    Thread.sleep(120000)
+//        val rdd = sc.parallelize(List("1",))
   }
 }

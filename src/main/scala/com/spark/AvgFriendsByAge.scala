@@ -1,4 +1,4 @@
-package com.sundogsoftware.spark
+package com.spark
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.rdd.RDD
