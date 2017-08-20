@@ -2,6 +2,7 @@ package com.spark
 
 import org.apache.log4j._
 import org.apache.spark._
+import org.apache.spark.sql.SQLContext
 
 /** Count up how many of each star rating exists in the MovieLens 100K data set. */
 object RatingsCounter {
@@ -13,15 +14,15 @@ object RatingsCounter {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     // Create a SparkContext using every core of the local machine, named RatingsCounter
-//    val sc = new SparkContext("local[*]", "RatingsCounter")
+    val sc = new SparkContext("local[*]", "RatingsCounter")
 
-    val sparkConf = new SparkConf()
-      .setMaster("spark://vkurugun-mac.local:7077")
-      .setAppName("Test")
-      .set("spark.executor.memory", "1g")
-      .set("spark.cores.max", "4")
-
-    val sc = new SparkContext(sparkConf)
+//    val sparkConf = new SparkConf()
+//      .setMaster("spark://vkurugun-mac.local:7077")
+//      .setAppName("Test")
+//      .set("spark.executor.memory", "1g")
+//      .set("spark.cores.max", "4")
+//
+//    val sc = new SparkContext(sparkConf)
 
     // Load up each line of the ratings data into an RDD
     val lines = sc.textFile("file:/Users/VikramBabu/open-source/practice/ml-large/movies.large.csv")

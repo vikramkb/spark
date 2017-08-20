@@ -56,6 +56,6 @@ object AvgFriendsByAge {
 //    50, 10
 //    34, 15
     avgByAge.sorted.foreach(println)
-    Thread.sleep(10000000)
+//    Thread.sleep(10000000)
   }
 }
