@@ -6,7 +6,7 @@ import sun.security.krb5.internal.SeqNumber
 
 object AvgFriendsByAge {
 
-  case class FriendConnection(seq_no: Int, name: String, age: Int, num_of_friends: Int)
+  case class FriendConnection(age: Int, num_of_friends: Int)
 
   def main(args: Array[String]): Unit = {
     Logger.getLogger("org").setLevel(Level.ERROR)
@@ -35,6 +35,7 @@ object AvgFriendsByAge {
       .option("mode", "DROPMALFORMED")
       .option("inferSchema", "true")
       .csv("file:/Users/VikramBabu/open-source/practice/ml-20m/fakefriendswithheader.csv")
+        .select("age", "num_of_friends")
         .as[FriendConnection]
 
     ds.printSchema()
@@ -42,5 +43,15 @@ object AvgFriendsByAge {
       .agg(bround(avg("num_of_friends"), 2).alias("avg"))
       .orderBy("age")
       .show()
+
+    ds.map(conn => (conn.age, (conn.num_of_friends, 1)))
+      .groupByKey(_._1)
+        .reduceGroups((x, y) => (x._1, (x._2._1+y._2._1, x._2._2 + y._2._2)))
+          .map(_._2)
+            .map(x => (x._1, Math.round(x._2._1.toDouble / x._2._2 * 100)/100.0))
+              .rdd
+                .sortByKey()
+                  .collect()
+                    .foreach(println)
   }
 }
